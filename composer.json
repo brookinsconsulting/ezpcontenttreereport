@@ -1,0 +1,24 @@
+{
+    "name": "brookinsconsulting/ezpcontenttreereport",
+    "description": "eZ Publish Legacy extension which provides a flexible solution which provides a quick and simple report of content tree content objects content in csv format. Great for admin reports!",
+    "type": "ezpublish-legacy-extension",
+    "keywords": [ "eZ Publish", "content tree", "content trees", "report" ],
+    "homepage": "https://bitbucket.org/brookinsconsulting/ezpcontenttreereport",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name" : "Brookins Consulting",
+            "homepage": "http://brookinsconsulting.com",
+            "email": "info@brookinsconsulting.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.0.0",
+        "ezsystems/ezpublish-legacy-installer": "*"
+    },
+    "extra": {
+        "ezpublish-legacy-extension-name": "ezpcontenttreereport"
+    }
+}
