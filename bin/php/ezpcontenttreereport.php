@@ -590,40 +590,19 @@ while ( list( $contentTreeNodeKey, $contentTreeNodeID ) = each( $fetchContentTre
 
                 if ( count( $objectMainNodeCustomAttributeValue ) > 0 )
                 {
-                    $customReportContentObjectAttributesCsvHeaderNamesTemp = $customReportContentObjectAttributesCsvHeaderNames;
+                    $objectMainNodeCustomAttributeValuePadded = array();
+                    $objectMainNodeCustomAttributeValueFirstItem = current( array_keys( $objectMainNodeCustomAttributeValue ) );
 
-                    foreach( $objectMainNodeCustomAttributeValue as $objectMainNodeCustomAttributeValueKey => $objectMainNodeCustomAttributeValueItem )
+                    for( $i = 0; $i < $objectMainNodeCustomAttributeValueFirstItem; $i++ )
                     {
-                        unset( $customReportContentObjectAttributesCsvHeaderNamesTemp[ $objectMainNodeCustomAttributeValueKey ] );
-
-                        $objectMainNodeCustomAttributeValueKeyNext = $objectMainNodeCustomAttributeValueKey + 1;
-                        $customReportContentObjectAttributesCsvHeaderColumnCountStartingAtZero = $customReportContentObjectAttributesCsvHeaderColumnCount -1;
-                        $customReportContentObjectAttributesCsvHeaderColumnCountStartingAtZeroMinusPrevious = $customReportContentObjectAttributesCsvHeaderColumnCountStartingAtZero - $objectMainNodeCustomAttributeValueKey;
-
-                        if ( ( $objectMainNodeCustomAttributeValueKey > 1 ) )
+                        if( !isset( $objectMainNodeCustomAttributeValuePadded[$i] ) )
                         {
-                            for( $i = 0; $i < $objectMainNodeCustomAttributeValueKey; $i++)
-                            {
-                                $objectData[] = '';
-                            }
-                        }
-
-                        if ( $objectMainNodeCustomAttributeValueItem != '' )
-                        {
-                            $objectData[] = $objectMainNodeCustomAttributeValueItem;
-                        }
-
-                        if ( $objectMainNodeCustomAttributeValueKey >= 1
-                            && $objectMainNodeCustomAttributeValueKey <= $customReportContentObjectAttributesCsvHeaderColumnCountStartingAtZero
-                            && $objectMainNodeCustomAttributeValueKeyNext <= $customReportContentObjectAttributesCsvHeaderColumnCountStartingAtZero
-                            && !isset( $objectMainNodeCustomAttributeValue[ $objectMainNodeCustomAttributeValueKeyNext ] ) )
-                        {
-                            for( $i = $objectMainNodeCustomAttributeValueKey; $i < $customReportContentObjectAttributesCsvHeaderColumnCountStartingAtZero; $i++)
-                            {
-                                $objectData[] = '';
-                            }
+                            $objectMainNodeCustomAttributeValuePadded[$i] = '';
                         }
                     }
+
+                    $objectMainNodeCustomAttributeValuePadded = array_merge( $objectMainNodeCustomAttributeValuePadded, $objectMainNodeCustomAttributeValue );
+                    $objectData = array_merge( $objectData, $objectMainNodeCustomAttributeValuePadded );
                 }
 
                 /** Test if report file is opened **/
